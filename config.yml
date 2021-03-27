@@ -1,0 +1,64 @@
+baseURL: http://example.org/
+languageCode: fr-fr
+title: indexof.dev
+paginate: 5
+theme: "PaperMod"
+
+params:
+  comments: true
+  disqusShortname: indexofdev
+  ShowReadingTime: true
+  ShowBreadCrumbs: true
+  env: production
+
+  homeInfoParams:
+    Title: IndexOf.dev 👨‍💻
+
+    Content: >
+      - Bienvenue sur IndexOf.dev, 
+
+      - Parcourez les **catégories** ou les **tags** dans le menu en haut pour trouver votre chemin.
+
+  taxonomies:
+    category: categories
+    tag: tags
+    series: series
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/d0tcom"
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+menu:
+  main:
+    - identifier: categories
+      name: Catégories
+      url: /categories/
+      weight: 10
+
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+
+    - name: Archives
+      url: /archives/
+      weight: 30
+
+    - name: Rechercher
+      url: /rechercher/
+      weight: 40
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # is necessary
