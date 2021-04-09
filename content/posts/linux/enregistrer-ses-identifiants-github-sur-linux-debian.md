@@ -4,8 +4,8 @@ title: "Enregistrer ses identifiants Github sur Linux (Debian)"
 summary: Enregistrer ses identifiants Github sur Linux (Debian)
 date: 2021-04-09T11:49:37+02:00
 draft: false
-tags: ["linux", "debian", "serveur", "nginx"]
-categories: ["linux", "serveur", "nginx"]
+tags: ["linux", "debian", "github"]
+categories: ["linux", "github"]
 ---
 
 Si on veut que GitHub se souvienne de nos identifiants, on peut les enregistrer en mémoire.
