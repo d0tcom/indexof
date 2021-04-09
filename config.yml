@@ -1,7 +1,7 @@
 baseURL: https://indexof.netlify.app/
 languageCode: fr-fr
 title: indexof.dev
-paginate: 5
+paginate: 10
 theme: "PaperMod"
 
 params:

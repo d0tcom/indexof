@@ -1,14 +1,16 @@
 ---
 author: "Jordan L."
-title: "Initialisation d'un serveur Debian"
-summary: Configuration de base pour un serveur Debian
-date: 2021-03-27T15:08:24+01:00
+title: "Déployer un projet Laravel 8 sur un serveur VPS"
+summary: Configuration de base pour un serveur Debian, déploiement projet laravel
+date: 2021-04-09
 draft: false
-tags: ["linux", "debian", "serveur"]
-categories: ["linux"]
+tags: ["linux", "debian", "serveur", "nginx", "laravel", "php", "mysql"]
+categories: ["linux", "laravel", "nginx"]
 ShowToc: true
 TocOpen: true
 ---
+
+# Configuration de base du serveur
 
 Quand on vient d'aquérir un serveur VPS avec Debian dessus, il y a quelques réglages de base à faire pour améliorer sa sécurité et l'utilisation.
 
@@ -114,3 +116,99 @@ OpenSSH (v6)     ALLOW    Anywhere (v6)
 Le firewall bloque maintenant toutes les connexions sauf pour OpenSSH.
 
 A chaque fois que vous aurez besoin d'ajouter une application qui a besoin de se connecter par exemple, vous devrez ajouter une nouvelle règle pour autoriser le trafic entrant.
+
+# Installer serveur Web Nginx
+
+Avant d'installer Nginx, nous allons mettre à jour la machine :
+
+```bash
+sudo apt update
+```
+
+Nous pouvons ensuite installer Nginx :
+
+```bash
+sudo apt install nginx
+```
+
+## Autoriser Nginx dans le firewall
+
+Pour voir la liste des applications disponibles dans le firewall :
+
+```bash
+sudo ufw app list
+
+Available applications:
+...
+  Nginx Full
+  Nginx HTTP
+  Nginx HTTPS
+...
+
+```
+
+Autoriser **Nginx HTTP**. Par la suite on pourra autoriser **Nginx HTTPS** si on veut un certificat SSL sur notre site.
+
+```bash
+sudo ufw allow 'Nginx HTTP'
+```
+
+On peut vérifier les changements :
+
+```bash
+sudo ufw status
+
+Status: active
+
+To                         Action      From
+--                         ------      ----
+OpenSSH                    ALLOW       Anywhere
+Nginx HTTP                 ALLOW       Anywhere
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+Nginx HTTP (v6)            ALLOW       Anywhere (v6)
+```
+
+## Vérifier que le serveur web Nginx est actif
+
+On peut vérifier que le serveur Nginx est actif :
+
+```bash
+systemctl status nginx
+
+nginx.service - A high performance web server and a reverse proxy server
+   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2019-07-03 12:52:54 UTC; 4min 23s ago
+     Docs: man:nginx(8)
+ Main PID: 3942 (nginx)
+    Tasks: 3 (limit: 4719)
+   Memory: 6.1M
+   CGroup: /system.slice/nginx.service
+           ├─3942 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+           ├─3943 nginx: worker process
+           └─3944 nginx: worker process
+```
+
+On peut aussi vérifier dans le navigateur que l'IP répond :
+(commande pour connaitre l'ip : **ip addr**)
+
+```bash
+http://ip_du_serveur
+```
+
+Vous devriez voir une page de bienvenue sur Nginx.
+
+## Quelques commandes utiles pour Nginx
+
+```bash
+sudo systemctl stop nginx       // Arrêter le serveur
+sudo systemctl start nginx      // Démarrer le serveur
+sudo systemctl restart nginx    // Redémarrer le serveur
+```
+
+# Installer MySQL
+
+Soon..
+
+# Installer PHP 8 et ses dépendances
+
+Soon..

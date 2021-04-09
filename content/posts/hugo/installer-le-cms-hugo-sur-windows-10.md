@@ -38,3 +38,15 @@ Déplacez-vous dans le dossier de votre choix, par exemple **"C:\SitesWeb\"**.
 > Générer un site :
 >
 > `hugo new site nomdemonsite`
+
+## Lancer un serveur web
+
+Hugo fournit son propre serveur web. Cela permettra entre autre de voir les modifications faites en local; et à chaque fois que l'on sauvegarde, la modification sera faite en temps réelle.
+
+> Lancer serveur web :
+>
+> `hugo server`
+
+## Liens utiles
+
+- [Hugo - Serveur](https://gohugo.io/commands/hugo_server/)
